@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Care App — Ton coach bien-être au quotidien</title>
+  <meta name="description" content="Routine, nutrition, sport et coaching IA — un programme bien-être personnalisé selon ton profil. Disponible sur iOS et Android." />
+  <meta property="og:title" content="Health Care App" />
+  <meta property="og:description" content="Ton coach bien-être au quotidien. Programme personnalisé, coach IA, nutrition et sport." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #04140C;
+      --surface:   #0D1F14;
+      --border:    #1A3022;
+      --accent:    #34C759;
+      --accent-dim:#0D2E17;
+      --ink:       #E8F5EC;
+      --ink2:      #A8C4B0;
+      --ink3:      #6B8E74;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { opacity: 0.8; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(4,20,12,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 17px; font-weight: 700; color: var(--ink);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-dot {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+    }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--ink2); font-size: 14px; font-weight: 500; }
+    .nav-cta {
+      background: var(--accent); color: #04140C !important;
+      padding: 8px 18px; border-radius: 20px;
+      font-weight: 700; font-size: 14px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 96px 24px 80px;
+      max-width: 760px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent-dim); border: 1px solid var(--accent);
+      color: var(--accent); font-size: 13px; font-weight: 600;
+      padding: 5px 14px; border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 18px; color: var(--ink2);
+      max-width: 540px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: #04140C;
+      font-weight: 700; font-size: 16px;
+      padding: 14px 28px; border-radius: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: opacity .15s, transform .15s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); color: #04140C; }
+    .btn-secondary {
+      background: transparent; color: var(--ink);
+      border: 1px solid var(--border);
+      font-weight: 600; font-size: 16px;
+      padding: 14px 28px; border-radius: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: border-color .15s;
+    }
+    .btn-secondary:hover { border-color: var(--ink3); color: var(--ink); }
+
+    /* ── FEATURES ── */
+    section { padding: 80px 24px; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: .1em;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px; color: var(--ink2); max-width: 520px;
+      line-height: 1.7; margin-bottom: 56px;
+    }
+
+    .features-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color .2s, transform .2s;
+    }
+    .feature-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .feature-emoji {
+      font-size: 32px; margin-bottom: 16px; display: block;
+    }
+    .feature-card h3 {
+      font-size: 18px; font-weight: 700; margin-bottom: 8px;
+    }
+    .feature-card p { font-size: 14px; color: var(--ink2); line-height: 1.65; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { max-width: 900px; margin: 0 auto; }
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: flex; gap: 28px; align-items: flex-start;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent-dim); border: 1px solid var(--accent);
+      color: var(--accent); font-weight: 800; font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .step p { font-size: 15px; color: var(--ink2); line-height: 1.65; }
+
+    /* ── SCORE SECTION ── */
+    .score-section {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    @media (max-width: 700px) { .score-section { grid-template-columns: 1fr; } }
+    .score-visual {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 40px;
+      text-align: center;
+    }
+    .score-ring {
+      width: 140px; height: 140px; margin: 0 auto 20px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0% 78%, var(--border) 78% 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .score-ring-inner {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .score-number { font-size: 36px; font-weight: 800; color: var(--accent); line-height: 1; }
+    .score-pct { font-size: 14px; color: var(--ink3); font-weight: 600; }
+    .score-tasks {
+      display: flex; flex-direction: column; gap: 10px; margin-top: 24px;
+    }
+    .score-task-row {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--ink2);
+    }
+    .score-check {
+      width: 20px; height: 20px; border-radius: 5px;
+      background: var(--accent-dim); border: 1px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--accent); font-weight: 800; flex-shrink: 0;
+    }
+    .score-check.empty { background: transparent; border-color: var(--border); }
+
+    /* ── PRIVACY BANNER ── */
+    .privacy-banner {
+      max-width: 900px; margin: 0 auto;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 36px;
+      display: flex; gap: 24px; align-items: flex-start;
+    }
+    .privacy-icon { font-size: 36px; flex-shrink: 0; }
+    .privacy-banner h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .privacy-banner p { font-size: 15px; color: var(--ink2); line-height: 1.65; }
+    .privacy-points {
+      list-style: none; margin-top: 16px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .privacy-points li { font-size: 14px; color: var(--ink2); }
+    .privacy-points li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-logo { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-links a { font-size: 14px; color: var(--ink3); }
+    .footer-copy { font-size: 13px; color: var(--ink3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 64px 20px 60px; }
+      .privacy-banner { flex-direction: column; }
+      section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-dot">🌿</div>
+    Health Care App
+  </div>
+  <div class="nav-links">
+    <a href="#fonctionnalites">Fonctionnalités</a>
+    <a href="#comment">Comment ça marche</a>
+    <a href="support.html">Support</a>
+    <a href="#telecharger" class="nav-cta">Télécharger</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ Programme bien-être personnalisé par IA</div>
+  <h1>Ton coach bien-être<br /><span>au quotidien</span></h1>
+  <p>Routine structurée, nutrition adaptée, programme sport et coach IA — tout en un. Généré selon ton profil, ajusté à tes progrès.</p>
+  <div class="hero-actions">
+    <a href="#telecharger" class="btn-primary">📱 Télécharger gratuitement</a>
+    <a href="#fonctionnalites" class="btn-secondary">Découvrir →</a>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="fonctionnalites">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">Fonctionnalités</div>
+    <h2 class="section-title">Tout ce dont tu as besoin,<br />dans une seule app</h2>
+    <p class="section-sub">Pas de notifications agressives. Pas de gamification vide. Un programme conçu pour durer.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-emoji">🌅</span>
+        <h3>Routine matin & soir</h3>
+        <p>Tâches structurées dans l'ordre — compléments, cohérence cardiaque, skincare. Adaptées à ton rythme et à ton profil.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">🍽️</span>
+        <h3>Nutrition personnalisée</h3>
+        <p>3 repas par jour suggérés selon tes allergies et préférences. Catalogue de recettes, changeable en 2 taps. Menu de la semaine toujours visible.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">💪</span>
+        <h3>Programme sport adapté</h3>
+        <p>Séances A/B/C selon ton niveau et ton type d'activité : bodyweight, running, natation, yoga. Exercices détaillés avec progression logique.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">🤖</span>
+        <h3>Coach IA disponible 24h/24</h3>
+        <p>Ton coach connaît ton programme, tes progrès et tes habitudes. Pose-lui n'importe quelle question — il répond en quelques secondes.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">✨</span>
+        <h3>Skincare intelligent</h3>
+        <p>Rotation automatique des actifs du soir (rétinol, AHA, BHA, niacinamide). Ne jamais appliquer les mauvais produits ensemble, sans y penser.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">📊</span>
+        <h3>Score journalier & progression</h3>
+        <p>Un score de 0 à 100% basé sur tes tâches réalisées. Streaks, badges et défis hebdomadaires pour rester motivé sur la durée.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="comment" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="how-section">
+    <div class="section-label">Comment ça marche</div>
+    <h2 class="section-title">Prêt en 3 minutes</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Remplis ton profil</h3>
+          <p>Âge, objectifs, activité physique, préférences alimentaires, allergies — l'onboarding dure 3 minutes et génère ton programme complet par IA.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Suis ta routine au quotidien</h3>
+          <p>Matin et soir, tes tâches t'attendent dans l'ordre. Coche-les au fur et à mesure. Ton score du jour se met à jour en temps réel.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Demande à ton coach</h3>
+          <p>Une question sur ton programme, ta nutrition ou ton sommeil ? Ton coach IA est disponible à tout moment et connaît ton contexte.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h3>Progresse chaque mois</h3>
+          <p>Bilan mensuel automatique : points forts, axes d'amélioration, ajustements de programme. Ton programme évolue avec toi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORE VISUAL -->
+<section>
+  <div class="score-section">
+    <div>
+      <div class="section-label">Score journalier</div>
+      <h2 class="section-title">Mesure ce qui compte vraiment</h2>
+      <p style="color:var(--ink2); line-height:1.7; font-size:16px; margin-bottom:20px;">
+        Ton score journalier reflète toutes tes actions de la journée — pas juste le sport. Skincare, compléments, nutrition, sommeil : tout compte.
+      </p>
+      <p style="color:var(--ink2); line-height:1.7; font-size:16px;">
+        Les streaks et les défis hebdomadaires t'aident à tenir sur la durée, sans pression.
+      </p>
+    </div>
+    <div class="score-visual">
+      <div class="score-ring">
+        <div class="score-ring-inner">
+          <span class="score-number">78</span>
+          <span class="score-pct">%</span>
+        </div>
+      </div>
+      <div style="font-size:13px; color:var(--ink3); margin-bottom:8px;">Score du jour — Mardi</div>
+      <div class="score-tasks">
+        <div class="score-task-row"><div class="score-check">✓</div>Douche froide</div>
+        <div class="score-task-row"><div class="score-check">✓</div>Compléments du matin</div>
+        <div class="score-task-row"><div class="score-check">✓</div>Cohérence cardiaque</div>
+        <div class="score-task-row"><div class="score-check">✓</div>Séance sport B</div>
+        <div class="score-task-row"><div class="score-check empty"></div>Lavage nasal du soir</div>
+        <div class="score-task-row"><div class="score-check empty"></div>Journaling 10 min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="privacy-banner">
+    <div class="privacy-icon">🔒</div>
+    <div>
+      <h3>Tes données t'appartiennent</h3>
+      <p>Health Care App est conçu dans le respect de ta vie privée. Aucune donnée vendue à des tiers, aucun tracking publicitaire.</p>
+      <ul class="privacy-points">
+        <li>Données stockées de façon sécurisée (Supabase, chiffrement au repos)</li>
+        <li>Synchronisation Apple Santé 100% optionnelle</li>
+        <li>Clé IA côté serveur uniquement — tes conversations ne quittent pas nos serveurs sécurisés</li>
+        <li>Suppression de compte et données sur simple demande</li>
+      </ul>
+      <a href="privacy.html" style="display:inline-block; margin-top:16px; font-size:14px; font-weight:600;">Lire la politique de confidentialité →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="telecharger" style="text-align:center;">
+  <div style="max-width:600px; margin:0 auto;">
+    <div class="section-label">Téléchargement</div>
+    <h2 class="section-title">Commence aujourd'hui</h2>
+    <p class="section-sub" style="margin: 0 auto 40px;">Gratuit. Aucun abonnement requis pour démarrer. Disponible sur iOS et Android.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">🍎 App Store</a>
+      <a href="#" class="btn-secondary">▶ Google Play</a>
+    </div>
+    <p style="margin-top:24px; font-size:13px; color:var(--ink3);">iOS 16+ · Android 10+</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🌿 Health Care App</div>
+  <div class="footer-links">
+    <a href="privacy.html">Politique de confidentialité</a>
+    <a href="support.html">Support</a>
+    <a href="mailto:support@quantikmedia.com">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Quantik Media. Tous droits réservés.<br />
+  Health Care App est un outil de suivi bien-être et ne remplace pas l'avis d'un professionnel de santé.</div>
+</footer>
+
+</body>
+</html>
